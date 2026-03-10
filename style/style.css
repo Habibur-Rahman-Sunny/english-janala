@@ -1,0 +1,13 @@
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+.bangla-font{
+    font-family: "Hind Siliguri", sans-serif;
+}
+
+/* Add fixed color in lesson button */
+.active{
+    background: #422AD5;
+    color: #FFFFfF;
+}
