@@ -14,6 +14,7 @@ showMessage()
 // 4️⃣ Fetch words of a specific lesson level when a lesson button is clicked
 //    → This runs after user clicks a lesson button 
 const loadLevelWord = (id) => {
+  addLoadSpinner(true);
     const url = `https://openapi.programming-hero.com/api/level/${id}`
     fetch(url)
     .then(res => res.json())
@@ -32,6 +33,16 @@ const loadLevelWord = (id) => {
     })
 }
 
+// 6️⃣ loadSpinner 
+const addLoadSpinner = (status) => {
+  if(status == true){
+    document.getElementById("spinner-container").classList.remove("hidden");
+    document.getElementById("vocabulary-container").classList.add("hidden");
+  }else{
+    document.getElementById("spinner-container").classList.add("hidden");
+    document.getElementById("vocabulary-container").classList.remove("hidden"); 
+  }
+}
 
 // 5️⃣ Display vocabulary cards of the selected lesson level
 //    → This runs after words of a level are fetched
@@ -46,16 +57,17 @@ const displayLevelsWords = (specificLevelWordsArray) => {  //specificLevelWordsA
         <h1 class="bangla-font font-bold text-xl">নেক্সট Lesson এ যান</h1>
       </div>
         `;
+        addLoadSpinner(false);
         return;
     }
     specificLevelWordsArray.forEach(objectOfArray => {
         const wordCard = document.createElement("div");
         wordCard.innerHTML = `
         <div class="flex flex-col gap-5 text-center bg-white p-5 rounded-lg">
-            <h3 class="font-bold text-xl bangla-font">${objectOfArray.word? objectOfArray.word : "শব্দ পাওয়া যায় নি"}</h3>
-            <p class="font-semibold bangla-font">${objectOfArray.meaning? objectOfArray.meaning : "অর্থ পাওয়া যায় নি" }</p>
+            <h3 class="font-bold text-2xl bangla-font">${objectOfArray.word? objectOfArray.word : "শব্দ পাওয়া যায় নি"}</h3>
+            <p class="font-semibold text-xl bangla-font">${objectOfArray.meaning? objectOfArray.meaning : "অর্থ পাওয়া যায় নি" }</p>
             <div>
-              <h3 class="font-semibold opacity-80 text-xl bangla-font">${objectOfArray.pronunciation? objectOfArray.pronunciation : "শব্দ পাওয়া যায় নি"}</h3>
+              <h3 class="font-semibold opacity-80 text-2xl bangla-font">${objectOfArray.pronunciation? objectOfArray.pronunciation : "শব্দ পাওয়া যায় নি"}</h3>
             </div>
             <div class="flex justify-between">
             <button onclick="showModal(${objectOfArray.id})" class="bg-[#1A91FF10] p-2 rounded-sm hover:bg-[#1A91FF40]"><i class="fa-solid fa-circle-info"></i></button>
@@ -65,10 +77,12 @@ const displayLevelsWords = (specificLevelWordsArray) => {  //specificLevelWordsA
         `;
         vocabularyContainer.appendChild(wordCard)
     });
+    addLoadSpinner(false);
 }
 
 
-//  function to open the modal using dialog showModal() method
+
+// 7️⃣  function to open the modal using dialog showModal() method
 const dialogueModal = document.getElementById("my_modal_5");
 const showModal = (id) => {
     dialogueModal.showModal(); // for  Open modal
@@ -77,28 +91,27 @@ const showModal = (id) => {
     .then(resp => resp.json())
     .then(objJs => displayInfoDetails(objJs))
 }
+// 8️⃣
 const displayInfoDetails = (objJs) => {
     dialogueModal.innerText = "";
     console.log(objJs);
     const infoSection = document.createElement("div");
     infoSection.innerHTML = `
     <div class="modal-box w-[800px] ">
-      <div class="border-1 border-blue-100 p-2 rounded-lg">
-        <h1 class="font-bold text-xl">Eager ( <span><i class="fa-solid fa-microphone-lines"></i></span>:${objJs.data.word})</h1>
-        <div class="flex flex-col gap-3">
+      <div class="border-1 border-blue-100 p-2 rounded-lg space-y-4">
+        <h1 class="font-bold text-xl">${objJs.data.word}( <span><i class="fa-solid fa-microphone-lines"></i></span>:  ${objJs.data.pronunciation})</h1>
+        <div class="flex flex-col gap-2">
           <p class="font-bold">meaning</p>
-          <p class="bangla-font text-sm">${objJs.data.meaning}</p>
+          <p class="bangla-font text-sm">${objJs.data.meaning? objJs.data.meaning : "Not found"}</p>
         </div>
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-2">
           <p class="font-semibold">Example</p>
           <p>${objJs.data.sentence}</p>
         </div>
-        <div class="flex flex-col gap-3">
-          <p class="bangla-font font-semibold">সমার্থক শব্দ গুলো</p>
+        <div class="flex flex-col gap-2">
+          <div> <p class=" font-semibold">Synonyms</p> </div>
           <div class="flex gap-3">
-            <div class="px-2 py-1 border-1 rounded-sm bg-blue-100 text-gray-700 border-blue-200">${objJs.data.synonyms[0]}</div>
-            <div class="px-2 py-1 border-1 rounded-sm  bg-blue-100 text-gray-700 border-blue-200">${objJs.data.synonyms[1]}</div>
-            <div class="px-2 py-1 border-1 rounded-sm  bg-blue-100 text-gray-700 border-blue-200">${objJs.data.synonyms[2]}</div>
+            <div>${(objJs.data.synonyms && objJs.data.synonyms.length > 0? createElement(objJs.data.synonyms) : "Not found")}</div>
           </div>
         </div>
       </div>
@@ -113,7 +126,12 @@ const displayInfoDetails = (objJs) => {
     dialogueModal.appendChild(infoSection);
 }
 
-
+// 9️⃣ write a function to  create synonym buttons automatic.
+const createElement = (array) =>{
+  const htmlElements = array.map((element) => `<span class="btn bg-blue-100">${element}</span>`);
+  const toString = htmlElements.join(" ");
+  return toString ;
+}
 
 // 3️⃣ Create lesson buttons dynamically and display them in the lesson section
 //    → This runs after lessons are fetched in showMessage()
