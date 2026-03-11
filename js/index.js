@@ -19,19 +19,23 @@ const loadLevelWord = (id) => {
     fetch(url)
     .then(res => res.json())
     .then(JsObject => {
-        //Remove all active class of lesson btn
-        const clickedBtn = document.querySelectorAll("#lesson-section button");
-        clickedBtn.forEach(button => {
-            button.classList.remove("active")
-        });
+      //Remove all active class of lesson btn
+        removeActiveBtn()
         //Add all Active class of lesson btn
         const clickBtn = document.getElementById(`button-${id}`);
         clickBtn.classList.add("active")
-
         // jsObject
         displayLevelsWords(JsObject.data)
     })
 }
+const removeActiveBtn = () => {
+  //Remove all active class of lesson btn
+        const clickedBtn = document.querySelectorAll("#lesson-section button");
+        clickedBtn.forEach(button => {
+            button.classList.remove("active")
+        });
+}
+
 
 // 6️⃣ loadSpinner 
 const addLoadSpinner = (status) => {
@@ -146,4 +150,25 @@ const displayLessons = (lessons) => {
         `;
         lessonSection.appendChild(lessonButton);
     });
+}
+
+
+// 🔟 write a function to search lesson word
+const clickBtn = () => {
+  // remove active class in lesson button when click search btn
+  removeActiveBtn()
+    // get input value
+    const input = document.getElementById("input-data");
+    const searchValue = input.value.trim().toLowerCase();
+    // fetch url
+    const url = `https://openapi.programming-hero.com/api/words/all`
+    fetch(url)
+    .then(response => response.json())
+    .then(jsObject => {
+        const objectOfArray = jsObject.data //array
+        const filterData = objectOfArray.filter(object =>
+            object.word.toLowerCase().includes(searchValue)
+        )
+        displayLevelsWords(filterData);
+    }) 
 }
