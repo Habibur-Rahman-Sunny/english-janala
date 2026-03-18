@@ -21,7 +21,7 @@ const loadLevelWord = (id) => {
     .then(JsObject => {
       //Remove all active class of lesson btn
         removeActiveBtn()
-        //Add all Active class of lesson btn
+        //Add active class in clicked btn
         const clickBtn = document.getElementById(`button-${id}`);
         clickBtn.classList.add("active")
         // jsObject
@@ -35,7 +35,6 @@ const removeActiveBtn = () => {
             button.classList.remove("active")
         });
 }
-
 
 // 6️⃣ loadSpinner 
 const addLoadSpinner = (status) => {
@@ -98,7 +97,6 @@ const showModal = (id) => {
 // 8️⃣
 const displayInfoDetails = (objJs) => {
     dialogueModal.innerText = "";
-    console.log(objJs);
     const infoSection = document.createElement("div");
     infoSection.innerHTML = `
     <div class="modal-box w-[800px] ">
