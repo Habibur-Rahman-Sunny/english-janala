@@ -13,10 +13,10 @@ This project demonstrates:
 ---
 
 ## 🛠️ Technologies Used
-- HTML5  
-- CSS3  
-- JavaScript 
-- Tailwind CSS  
+- HTML5
+- - Tailwind CSS
+- Vanilla-JavaScript 
+  
  
 
 ---
