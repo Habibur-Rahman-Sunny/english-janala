@@ -1,3 +1,12 @@
+
+A responsive webpage built using HTML, Tailwind CSS, and JavaScript for understanding core concepts of web development.
+Fetched data from an API using JavaScript and displayed it dynamically on the UI using async/await.
+
+🌐 Live Demo: https://habibur-rahman-sunny.github.io/Job-application-tracker/
+
+💻 Tech Stack: HTML5, Tailwind, JavaScript
+
+
 # ENGLISH <img width="25px" src="./assets/logo.png" /> JANALA
 
 ---
