@@ -53,8 +53,6 @@ This project uses the following dependencies:
 
 ## 🚀 How to Run the Project Locally
 
-## 🚀 How to Run the Project Locally
-
 1. Download or clone the repository.
 
 2. Open the project folder on your computer.
@@ -65,9 +63,11 @@ This project uses the following dependencies:
 
 5. Command Prompt will open in that folder.
 
-6.Then write git clone and paste the link copied from the repository 
-7.Then enter and open it in VS Code.
+6. Then write `git clone` and paste the link copied from the repository.
 
+7. Press Enter, then open the project in VS Code.
+
+🎉 Done! The project is now ready to run.
 
 
 
