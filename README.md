@@ -1,9 +1,3 @@
-# 📘 English Janala
-
-## 🔗 Live Demo
- https://habibur-rahman-sunny.github.io/english-janala/ 
- 
----
 
 ## 📝 Project Overview
 **English Janala** is an interactive vocabulary learning web application.  
