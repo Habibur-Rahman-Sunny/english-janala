@@ -44,7 +44,7 @@ This project uses the following dependencies:
 
 ## 🚀 How to Run the Project Locally
 
-1. Download or clone the repository.
+1. Go to the repository and click on the Code button, then copy the repository link.
 
 2. Open the project folder on your computer.
 
