@@ -15,12 +15,9 @@ This project demonstrates:
 ## 🛠️ Technologies Used
 - HTML5  
 - CSS3  
-- JavaScript (ES6+)  
+- JavaScript 
 - Tailwind CSS  
-- DaisyUI  
-- Font Awesome  
-- Google Fonts  
-- API  
+ 
 
 ---
 
