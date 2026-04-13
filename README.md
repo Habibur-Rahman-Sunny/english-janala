@@ -14,7 +14,7 @@ This project demonstrates:
 
 ## 🛠️ Technologies Used
 - HTML5
-- - Tailwind CSS
+- Tailwind CSS
 - Vanilla-JavaScript 
   
  
